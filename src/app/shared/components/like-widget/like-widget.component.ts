@@ -10,8 +10,8 @@ import { UniqueIdService } from '../../services/unique-id/unique-id.service';
   styleUrl: './like-widget.component.css',
 })
 export class LikeWidgetComponent implements OnInit {
-  @Output() public liked = new EventEmitter<void>();
-  @Input() public likes = 0;
+  @Output() public likedEvent = new EventEmitter<void>();
+  @Input() public qtdLikes = 0;
   @Input() public id: string = null;
   public fonts = { faThumbsUp };
 
@@ -23,7 +23,7 @@ export class LikeWidgetComponent implements OnInit {
     console.log(this.id);
   }
 
-  public likeClicked(): void {
-    this.liked.emit();
+  public thumbsUpClicked(): void {
+    this.likedEvent.emit();
   }
 }

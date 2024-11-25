@@ -1,7 +1,7 @@
 <div
   class="like-widget-container"
-  (click)="likeClicked()"
-  (keyup.enter)="likeClicked()"
+  (click)="thumbsUpClicked()"
+  (keyup.enter)="thumbsUpClicked()"
 >
   <fa-icon
     [icon]="fonts.faThumbsUp"
@@ -15,6 +15,6 @@
     [attr.id]="id"
     aria-live="true"
     aria-atomic="true"
-    >{{ likes }}</span
+    >{{ qtdLikes }}</span
   >
 </div>

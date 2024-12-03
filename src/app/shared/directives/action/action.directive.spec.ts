@@ -15,9 +15,14 @@ describe('ActionDirective', () => {
   });
 
   it('(D) (@Output appAction) should emit event with payload when ENTER key is pressed', () => {
-    const divEl: HTMLElement =
-      fixture.nativeElement.querySelector('.dummy-component');
-    const event = new KeyboardEvent('keyUp', { key: 'Enter' });
+    const divEl: HTMLElement = fixture.nativeElement.querySelector('.dummy-component');
+    const event = new KeyboardEvent('keyup', { key: 'Enter' });
+    divEl.dispatchEvent(event);
+    expect(component.hasEvent()).toBe(true);
+  });
+  it('(D) (@Output appAction) should emit event with payload clicked', () => {
+    const divEl: HTMLElement = fixture.nativeElement.querySelector('.dummy-component');
+    const event = new Event('click');
     divEl.dispatchEvent(event);
     expect(component.hasEvent()).toBe(true);
   });
@@ -29,12 +34,15 @@ describe('ActionDirective', () => {
     (appAction)="actionHandler($event)"
   ></div>`,
 })
+
 export class ActionDirectiveTestComponent {
   private event: Event = null;
+
   public actionHandler(event: Event): void {
     this.event = event;
   }
+
   public hasEvent(): boolean {
-    return !this.event;
+    return !!this.event;
   }
 }

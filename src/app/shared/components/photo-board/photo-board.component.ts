@@ -2,12 +2,12 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Photo } from './interfaces/photos';
 
 @Component({
-    selector: 'app-photo-boar',
+    selector: 'app-photo-board',
     templateUrl: './photo-board.component.html',
     styleUrls: ['./photo-board.component.scss']
 })
 
-export class PhotoBardComponent implements OnChanges {
+export class PhotoBoardComponent implements OnChanges {
     @Input() public photos: Photo[];
     public rows: any[][] = [];
 
@@ -18,11 +18,11 @@ export class PhotoBardComponent implements OnChanges {
         }
     }
 
-    public groupColumns(photos: Photo[]) {
+    private groupColumns(photos: Photo[]): any[][] {
         const newRows = [];
         const step = 4;
-        for (let index = 0; index < this.photos.length; index += 4) {
-            newRows.push(photos.splice(index, index + step))
+        for (let index = 0; index < photos.length; index += step) {
+            newRows.push(photos.slice(index, index + step))
         }
         return newRows
     }
